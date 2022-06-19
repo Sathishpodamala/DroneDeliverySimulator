@@ -46,6 +46,15 @@ namespace Alpha
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DROP"",
+                    ""type"": ""Button"",
+                    ""id"": ""edaff5d2-a146-455d-ad22-89084c3c1e25"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -180,6 +189,17 @@ namespace Alpha
                     ""action"": ""ARROWS"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3d481d3-6f75-4f3c-8a8c-f21c83ef5ae8"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DROP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -190,6 +210,7 @@ namespace Alpha
             m_Drone = asset.FindActionMap("Drone", throwIfNotFound: true);
             m_Drone_WASD = m_Drone.FindAction("WASD", throwIfNotFound: true);
             m_Drone_ARROWS = m_Drone.FindAction("ARROWS", throwIfNotFound: true);
+            m_Drone_DROP = m_Drone.FindAction("DROP", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -251,12 +272,14 @@ namespace Alpha
         private IDroneActions m_DroneActionsCallbackInterface;
         private readonly InputAction m_Drone_WASD;
         private readonly InputAction m_Drone_ARROWS;
+        private readonly InputAction m_Drone_DROP;
         public struct DroneActions
         {
             private @DroneInput m_Wrapper;
             public DroneActions(@DroneInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @WASD => m_Wrapper.m_Drone_WASD;
             public InputAction @ARROWS => m_Wrapper.m_Drone_ARROWS;
+            public InputAction @DROP => m_Wrapper.m_Drone_DROP;
             public InputActionMap Get() { return m_Wrapper.m_Drone; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -272,6 +295,9 @@ namespace Alpha
                     @ARROWS.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnARROWS;
                     @ARROWS.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnARROWS;
                     @ARROWS.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnARROWS;
+                    @DROP.started -= m_Wrapper.m_DroneActionsCallbackInterface.OnDROP;
+                    @DROP.performed -= m_Wrapper.m_DroneActionsCallbackInterface.OnDROP;
+                    @DROP.canceled -= m_Wrapper.m_DroneActionsCallbackInterface.OnDROP;
                 }
                 m_Wrapper.m_DroneActionsCallbackInterface = instance;
                 if (instance != null)
@@ -282,6 +308,9 @@ namespace Alpha
                     @ARROWS.started += instance.OnARROWS;
                     @ARROWS.performed += instance.OnARROWS;
                     @ARROWS.canceled += instance.OnARROWS;
+                    @DROP.started += instance.OnDROP;
+                    @DROP.performed += instance.OnDROP;
+                    @DROP.canceled += instance.OnDROP;
                 }
             }
         }
@@ -290,6 +319,7 @@ namespace Alpha
         {
             void OnWASD(InputAction.CallbackContext context);
             void OnARROWS(InputAction.CallbackContext context);
+            void OnDROP(InputAction.CallbackContext context);
         }
     }
 }

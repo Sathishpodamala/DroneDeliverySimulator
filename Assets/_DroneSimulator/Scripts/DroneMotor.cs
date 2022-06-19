@@ -13,14 +13,15 @@ namespace Alpha
 
         [Header("Propeller Properties")]
         [SerializeField] private Transform propeller;
-        [SerializeField] private float propellerRotationSpeed=300f;
+        [SerializeField] private float propellerRotationSpeed=150f;
         #endregion
 
 
         #region Interface Methods
-        public void Init()
+        public void Init(float maxPower,int motorCount)
         {
-            
+            this.maxPower = maxPower;
+            this.motorCount = motorCount;
         }
 
         public void UpdateMotor(Rigidbody rb, float throttle)

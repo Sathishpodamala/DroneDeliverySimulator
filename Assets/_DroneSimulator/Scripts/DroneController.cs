@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Baracuda.Monitoring.API;
+using Baracuda.Monitoring;
 
 namespace Alpha
 {
@@ -12,6 +14,9 @@ namespace Alpha
         [SerializeField] private float minMaxRoll = 30f;
         [SerializeField] private float yawPower = 4f;
         [SerializeField] private float lerpSpeed = 2f;
+
+        [Header("Motor Properties")]
+        [SerializeField] private float maxPower = 4f;
 
 
         private float finalPitch;
@@ -25,12 +30,22 @@ namespace Alpha
         private DroneInputManager inputManager;
         #endregion
 
+        #region Monitor
+        [Monitor]
+        public Vector3 rbVelocity;
+        #endregion
+
+
         #region UnityMethods
         void Awake()
         {
             Init();
+            MonitoringManager.RegisterTarget(this);
         }
-
+        private void OnDestroy()
+        {
+            MonitoringManager.UnregisterTarget(this);
+        }
 
         void FixedUpdate()
         {
@@ -38,6 +53,8 @@ namespace Alpha
             {
                 HandleControls();
                 HandleMotors();
+
+                rbVelocity = rb.velocity;
             }
         }
         #endregion
@@ -56,7 +73,7 @@ namespace Alpha
 
             foreach(IMotor motor in droneMotors)
             {
-                motor.Init();
+                motor.Init(maxPower);
             }
         }
 

@@ -11,6 +11,7 @@ namespace Alpha
         public float verticalInput;
         public float leftRightInput;
         public float upDownInput;
+        public bool drop;
 
         private Vector2 horizontalVerticalInput;
         private Vector2 arrowsInput;
@@ -31,9 +32,16 @@ namespace Alpha
 
             droneInput.Drone.ARROWS.performed += Get_ARROWS_Input;
             droneInput.Drone.ARROWS.canceled += Get_ARROWS_Input;
+
+            droneInput.Drone.DROP.performed += DROP_Input;
+            droneInput.Drone.DROP.canceled += DROP_Input;
         }
 
-      
+        private void DROP_Input(InputAction.CallbackContext obj)
+        {
+            drop = obj.ReadValueAsButton();
+        }
+
         void OnDisable()
         {
             droneInput.Drone.WASD.performed -= Get_WASD_Input;
