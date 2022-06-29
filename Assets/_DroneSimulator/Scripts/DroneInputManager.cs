@@ -37,11 +37,7 @@ namespace Alpha
             droneInput.Drone.DROP.canceled += DROP_Input;
         }
 
-        private void DROP_Input(InputAction.CallbackContext obj)
-        {
-            drop = obj.ReadValueAsButton();
-        }
-
+        
         void OnDisable()
         {
             droneInput.Drone.WASD.performed -= Get_WASD_Input;
@@ -70,6 +66,10 @@ namespace Alpha
             horizontalVerticalInput = obj.ReadValue<Vector2>();
             horizontalInput = horizontalVerticalInput.x;
             verticalInput = horizontalVerticalInput.y;
+        }
+        private void DROP_Input(InputAction.CallbackContext obj)
+        {
+            drop = obj.ReadValueAsButton();
         }
 
         #endregion
