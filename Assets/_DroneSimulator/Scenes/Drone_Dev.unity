@@ -1003,6 +1003,13 @@ MonoBehaviour:
   extraOffset: {x: 0, y: -1.5, z: 5.33}
   lerpSpeed: 25
   rotationSpeed: 8
+  direct: {x: 0, y: 0, z: 0}
+  pos: {x: 0, y: 0, z: 0}
+  forward: {x: 0, y: 0, z: 0}
+  up: {x: 0, y: 0, z: 0}
+  newPos: {x: 0, y: 0, z: 0}
+  upandYoffset: {x: 0, y: 0, z: 0}
+  forwardandZoffset: {x: 0, y: 0, z: 0}
 --- !u!1 &355203088
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,6 +33,12 @@ namespace Alpha
         #region Monitor
         [Monitor]
         public Vector3 rbVelocity;
+
+        [Monitor]
+        public Vector3 eular;
+
+        [Monitor]
+        public Quaternion rot;
         #endregion
 
 
@@ -49,6 +55,9 @@ namespace Alpha
 
         void FixedUpdate()
         {
+            rot = transform.rotation;
+            eular = transform.eulerAngles;
+
             if(rb)
             {
                 HandleControls();
