@@ -25,25 +25,26 @@ namespace Alpha
         void Start()
         {
             orderGenerator = new OrderGenerator();
+            generatedOrders = orderGenerator.GenerateBulkOrders(sectorsManager.allBuildings, currentlyUsingConfig, numberOfOrdersToGenerate);
+
+            for (int i = 0; i < generatedOrders.Count; i++)
+            {
+                debugcolors.Add(Random.ColorHSV());
+            }
+
         }
 
-        private void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.G))
-            {
-                generatedOrders = orderGenerator.GenerateBulkOrders(sectorsManager.allBuildings, currentlyUsingConfig, numberOfOrdersToGenerate);
-            }
-        }
+        List<Color> debugcolors = new List<Color>();
         private void OnDrawGizmos()
         {
-            if (!debug) return;
-            foreach (Order order in generatedOrders)
+            for (int i = 0; i < generatedOrders.Count; i++)
             {
-
-                Gizmos.color = Random.ColorHSV();
-                Gizmos.DrawLine(order.PickupPoint.position, order.DropPoint.position);
+                Gizmos.color = debugcolors[i];
+                Gizmos.DrawLine(generatedOrders[i].PickupPoint.position, generatedOrders[i].DropPoint.position);
+            
             }
         }
+
         #endregion
 
         #region PublicMethods

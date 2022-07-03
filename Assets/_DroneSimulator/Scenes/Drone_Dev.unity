@@ -280,6 +280,8 @@ MonoBehaviour:
   lerpSpeed: 2
   maxPower: 20
   rbVelocity: {x: 0, y: 0, z: 0}
+  eular: {x: 0, y: 0, z: 0}
+  rot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &188485858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,6 +813,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3894593739789476273, guid: 2a465fb656cc908449dd4d030caf82b3,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 330585545}
+    - target: {fileID: 3894593739789476273, guid: 2a465fb656cc908449dd4d030caf82b3,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3894593739789476274, guid: 2a465fb656cc908449dd4d030caf82b3,
         type: 3}
       propertyPath: m_UiScaleMode
@@ -835,6 +847,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas_Touch_Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3894593739789476284, guid: 2a465fb656cc908449dd4d030caf82b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4006485306664225303, guid: 2a465fb656cc908449dd4d030caf82b3,
         type: 3}
@@ -1004,12 +1021,8 @@ MonoBehaviour:
   lerpSpeed: 25
   rotationSpeed: 8
   direct: {x: 0, y: 0, z: 0}
-  pos: {x: 0, y: 0, z: 0}
-  forward: {x: 0, y: 0, z: 0}
-  up: {x: 0, y: 0, z: 0}
-  newPos: {x: 0, y: 0, z: 0}
-  upandYoffset: {x: 0, y: 0, z: 0}
-  forwardandZoffset: {x: 0, y: 0, z: 0}
+  normalDirect: {x: 0, y: 0, z: 0}
+  newRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &355203088
 GameObject:
   m_ObjectHideFlags: 0

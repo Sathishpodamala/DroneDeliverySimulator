@@ -18,7 +18,7 @@ namespace Alpha
             {
                 string pickid = buildings[points.pickIndex].BuildingID;
                 string dropid = buildings[points.dropIndex].BuildingID;
-                string orderId = pickid + "_" + dropid;
+                string orderId = pickid + "|" + dropid;
                 float weight = CalculateWeight(config, points.distance);
                 float price = CalculatePrice(config, weight);
                 float distance = points.distance;
@@ -96,12 +96,12 @@ namespace Alpha
 
         public float CalculateWeight(OrderConfig config,float distance)
         {
-            return Helper.CustomRemapbasedOnCurve(config.weightCurve, config.minDistance, config.maxDistance, config.minWeight, config.maxWeight, distance);
+            return Helper.RemapOnCurve(config.weightCurve, config.minDistance, config.maxDistance, config.minWeight, config.maxWeight, distance);
         }
 
         public float CalculatePrice(OrderConfig config, float weight)
         {
-            return Helper.CustomRemapbasedOnCurve(config.priceCurve, config.minWeight, config.maxWeight, config.minPrice, config.maxPrice, weight);
+            return Helper.RemapOnCurve(config.priceCurve, config.minWeight, config.maxWeight, config.minPrice, config.maxPrice, weight);
         }
         #endregion
     }
