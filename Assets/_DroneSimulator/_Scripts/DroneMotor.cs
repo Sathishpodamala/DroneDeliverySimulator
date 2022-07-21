@@ -13,7 +13,7 @@ namespace Alpha
 
         [Header("Propeller Properties")]
         [SerializeField] private Transform propeller;
-        [SerializeField] private float propellerRotationSpeed=150f;
+        [SerializeField] private float propellerRotationSpeed=100f;
         #endregion
 
 
@@ -34,19 +34,21 @@ namespace Alpha
             float finalDifference = Physics.gravity.magnitude * difference;
 
             Vector3 motorForce = Vector3.zero;
-            motorForce = transform.up * ((rb.mass * Physics.gravity.magnitude+finalDifference) + (maxPower * throttle)) / motorCount;
+           // motorForce = transform.up * ((rb.mass * Physics.gravity.magnitude + finalDifference) + (maxPower * throttle)) / motorCount;
+            motorForce = transform.up * maxPower * throttle;
+            Debug.Log("Force: "+motorForce);
 
             rb.AddForce(motorForce, ForceMode.Force);
 
-            HanldePropeller();
+            HanldePropeller(throttle);
         }
 
 
         #endregion
         #region Private Methods
-        private void HanldePropeller()
+        private void HanldePropeller(float throttle)
         {
-            propeller.Rotate(Vector3.up, propellerRotationSpeed);
+            propeller.Rotate(Vector3.up, propellerRotationSpeed * throttle);
         }
         #endregion
     }

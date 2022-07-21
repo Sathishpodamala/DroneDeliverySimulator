@@ -93,9 +93,9 @@ namespace Alpha
             float roll = -inputManager.horizontalInput * minMaxRoll;
             yaw += inputManager.leftRightInput * yawPower;
 
-            finalPitch = Mathf.Lerp(finalPitch, pitch, Time.deltaTime * lerpSpeed);
-            finalRoll = Mathf.Lerp(finalRoll, roll, Time.deltaTime * lerpSpeed);
-            finalYaw = Mathf.Lerp(finalYaw, yaw, Time.deltaTime * lerpSpeed);
+            finalPitch = Mathf.Lerp(finalPitch, pitch, Time.fixedDeltaTime * lerpSpeed);
+            finalRoll = Mathf.Lerp(finalRoll, roll, Time.fixedDeltaTime * lerpSpeed);
+            finalYaw = Mathf.Lerp(finalYaw, yaw, Time.fixedDeltaTime * lerpSpeed);
 
             Quaternion finalRotation = Quaternion.Euler(finalPitch, finalYaw, finalRoll);
 

@@ -15,21 +15,29 @@ namespace Alpha
         [Space(20)]
         [Header("ORDERS")]
         public int numberOfOrdersToGenerate = 5;
-        public List<Order> generatedOrders = new List<Order>();
+        [SerializeField] private List<Order> generatedOrders = new List<Order>();
 
-
+        private Dictionary<string, Order> orders = new Dictionary<string, Order>();
         private OrderGenerator orderGenerator;
+
+
+        public Dictionary<string, Order> Orders => orders;
         #endregion
 
         #region UnityMethods
         void Start()
         {
             orderGenerator = new OrderGenerator();
-            generatedOrders = orderGenerator.GenerateBulkOrders(sectorsManager.allBuildings, currentlyUsingConfig, numberOfOrdersToGenerate);
 
-            for (int i = 0; i < generatedOrders.Count; i++)
+            RefreshOrders();
+
+
+            if (debug)
             {
-                debugcolors.Add(Random.ColorHSV());
+                for (int i = 0; i < generatedOrders.Count; i++)
+                {
+                    debugcolors.Add(Random.ColorHSV());
+                }
             }
 
         }
@@ -37,22 +45,37 @@ namespace Alpha
         List<Color> debugcolors = new List<Color>();
         private void OnDrawGizmos()
         {
-            for (int i = 0; i < generatedOrders.Count; i++)
+            if (debug)
             {
-                Gizmos.color = debugcolors[i];
-                Gizmos.DrawLine(generatedOrders[i].PickupPoint.position, generatedOrders[i].DropPoint.position);
-            
+                for (int i = 0; i < generatedOrders.Count; i++)
+                {
+                    Gizmos.color = debugcolors[i];
+                    Gizmos.DrawLine(generatedOrders[i].PickupPoint.position, generatedOrders[i].DropPoint.position);
+
+                }
             }
         }
 
         #endregion
 
         #region PublicMethods
-
+        public void RefreshOrders()
+        {
+            generatedOrders.Clear();
+            orders.Clear();
+            generatedOrders = orderGenerator.GenerateBulkOrders(sectorsManager.allBuildings, currentlyUsingConfig, numberOfOrdersToGenerate);
+            StoreOrdersIntoDictionary();
+        }
         #endregion
 
         #region PrivateMethods
-
+        private void StoreOrdersIntoDictionary()
+        {
+            foreach (Order order in generatedOrders)
+            {
+                orders.Add(order.OrderID, order);
+            }
+        }
         #endregion
 
         #region GameEventListeners

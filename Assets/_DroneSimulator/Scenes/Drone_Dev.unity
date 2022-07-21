@@ -190,6 +190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NYBlock01_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4251720594857276063, guid: 1cd0e95b6cdedf3468ff544424b36f1b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cd0e95b6cdedf3468ff544424b36f1b, type: 3}
 --- !u!1 &127250401
@@ -234,10 +239,10 @@ GameObject:
   m_Component:
   - component: {fileID: 188485856}
   - component: {fileID: 188485859}
+  - component: {fileID: 188485861}
   - component: {fileID: 188485858}
   - component: {fileID: 188485857}
   - component: {fileID: 188485860}
-  - component: {fileID: 188485861}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -259,6 +264,7 @@ Transform:
   m_Children:
   - {fileID: 993866894296314852}
   - {fileID: 982681694}
+  - {fileID: 1413774558}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -274,11 +280,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029fbf92c57022546a16cb8c771a4cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMaxPitch: 35
-  minMaxRoll: 30
-  yawPower: 2
-  lerpSpeed: 2
-  maxPower: 20
+  minMaxPitch: 25
+  minMaxRoll: 25
+  yawPower: 3
+  lerpSpeed: 3
+  maxPower: 100
   rbVelocity: {x: 0, y: 0, z: 0}
   eular: {x: 0, y: 0, z: 0}
   rot: {x: 0, y: 0, z: 0, w: 0}
@@ -307,7 +313,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188485855}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1016,10 +1022,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1330000d59067bd469f9dceafd2af353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 188485856}
-  extraOffset: {x: 0, y: -1.5, z: 5.33}
-  lerpSpeed: 25
-  rotationSpeed: 8
+  target: {fileID: 1413774558}
+  extraOffset: {x: 0, y: 0.72, z: -1}
+  lerpSpeed: 50
+  slerpSpeed: 1
+  rotationSpeed: 10
   direct: {x: 0, y: 0, z: 0}
   normalDirect: {x: 0, y: 0, z: 0}
   newRot: {x: 0, y: 0, z: 0, w: 0}
@@ -1310,7 +1317,7 @@ MonoBehaviour:
   maxPower: 4
   motorCount: 4
   propeller: {fileID: 993866894296314878}
-  propellerRotationSpeed: 300
+  propellerRotationSpeed: 150
 --- !u!1 &737586558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,7 +1342,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737586558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 73, y: 13.5, z: 79.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1454,7 +1461,7 @@ MonoBehaviour:
   maxPower: 4
   motorCount: 4
   propeller: {fileID: 993866894296314874}
-  propellerRotationSpeed: 300
+  propellerRotationSpeed: 150
 --- !u!1 &982681693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,7 +1554,38 @@ MonoBehaviour:
   maxPower: 4
   motorCount: 4
   propeller: {fileID: 993866894296314876}
-  propellerRotationSpeed: 300
+  propellerRotationSpeed: 150
+--- !u!1 &1413774557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1413774558}
+  m_Layer: 0
+  m_Name: Cam Look
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1413774558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413774557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.019, z: -0.158}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 188485856}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1480838869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,7 +1777,7 @@ MonoBehaviour:
   maxPower: 4
   motorCount: 4
   propeller: {fileID: 993866894296314872}
-  propellerRotationSpeed: 300
+  propellerRotationSpeed: 150
 --- !u!1 &993866894296149952
 GameObject:
   m_ObjectHideFlags: 0

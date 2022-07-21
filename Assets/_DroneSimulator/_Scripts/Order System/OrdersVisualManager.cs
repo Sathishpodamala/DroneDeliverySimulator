@@ -9,7 +9,7 @@ namespace Alpha
         #region Variables
         [SerializeField] private OrderManagementSystem managementSystem;
         [SerializeField] private List<OrderVisual> visuals = new List<OrderVisual>();
-        
+
         #endregion
 
         #region UnityMethods
@@ -17,13 +17,20 @@ namespace Alpha
         {
             yield return new WaitForSeconds(1f);
 
-            if (managementSystem && managementSystem.generatedOrders.Count >= visuals.Count)
+            if (managementSystem && managementSystem.Orders.Count >= visuals.Count)
             {
-                for (int i = 0; i < visuals.Count; i++)
+                int i = 0;
+                foreach (KeyValuePair<string,Order> pair in managementSystem.Orders)
                 {
-                    Order order = managementSystem.generatedOrders[i];
-                    visuals[i].Init(order.Weight, order.Price);
+                    Order order = pair.Value;
+                    visuals[i].Init(order.Weight, order.Price, order.OrderID);
+
+                    i++;
+                    if (i >= visuals.Count)
+                        break;
                 }
+                    
+                
             }
         }
 

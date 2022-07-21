@@ -6,6 +6,7 @@ namespace Alpha.Events
 {
     public enum EventId
     {
+        EVENT_ON_ORDER_ACCEPTED,
         EVENT_ON_PACAKAGE_PICKED_UP,
         EVENT_ON_PACAKAGE_DELIVERED,
     }

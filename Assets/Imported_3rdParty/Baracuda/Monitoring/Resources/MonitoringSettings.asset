@@ -26,7 +26,7 @@ MonoBehaviour:
   logUnknownExceptions: 4
   logProcessorNotFoundException: 3
   logInvalidProcessorSignatureException: 3
-  addClassName: 0
+  addClassName: 1
   appendSymbol: 46
   humanizeNames: 1
   variablePrefixes:
@@ -45,7 +45,7 @@ MonoBehaviour:
   - Assembly-Plugin
   - DOTween
   bannedAssemblyNames: []
-  filePathIL2CPPTypes: G:/Unity/Monitoring/Assets/Baracuda/IL2CPP/IL2CPP_AOT.cs
+  filePathIL2CPPTypes: D:/Unity Projects/DroneDeliverySimulator/Assets
   useIPreprocessBuildWithReport: 1
   throwOnTypeGenerationError: 1
   preprocessBuildCallbackOrder: 0

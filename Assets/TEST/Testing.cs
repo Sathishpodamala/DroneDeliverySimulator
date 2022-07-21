@@ -25,13 +25,6 @@ namespace Alpha
 
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.P))
-            {
-                Order order = system.generatedOrders[0];
-                pickup.transform.position = order.PickupPoint.position;
-                drop.transform.position = order.DropPoint.position;
-            }
-
 
             //calculatedWeight = Helper.Remap(config.minDistance, config.maxDistance, config.minWeight, config.maxWeight, distance);
             //curvedWeight = Helper.CustomRemapbasedOnCurve(config.weightCurve, config.minDistance, config.maxDistance, config.minWeight, config.maxWeight, distance);
