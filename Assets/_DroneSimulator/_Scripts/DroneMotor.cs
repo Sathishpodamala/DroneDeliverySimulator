@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Alpha
 {
-    public class DroneMotor :MonoBehaviour,IMotor
+    public class DroneMotor : MonoBehaviour, IMotor
     {
 
         #region Variables
@@ -13,12 +13,18 @@ namespace Alpha
 
         [Header("Propeller Properties")]
         [SerializeField] private Transform propeller;
-        [SerializeField] private float propellerRotationSpeed=100f;
+        [SerializeField] private float propSpinSpeed = 100f;
+
+        [Tooltip("how fast the propellers slow down")]
+        [HideInInspector]
+        [Range(0f, 1f)]
+        public float propStopSpeed = 1f;
+        private float calPropSpeed;
         #endregion
 
 
         #region Interface Methods
-        public void Init(float maxPower,int motorCount)
+        public void Init(float maxPower, int motorCount)
         {
             this.maxPower = maxPower;
             this.motorCount = motorCount;
@@ -34,21 +40,21 @@ namespace Alpha
             float finalDifference = Physics.gravity.magnitude * difference;
 
             Vector3 motorForce = Vector3.zero;
-           // motorForce = transform.up * ((rb.mass * Physics.gravity.magnitude + finalDifference) + (maxPower * throttle)) / motorCount;
-            motorForce = transform.up * maxPower * throttle;
-            Debug.Log("Force: "+motorForce);
+            motorForce = transform.up * ((rb.mass * Physics.gravity.magnitude + finalDifference) + (maxPower * throttle)) / motorCount;
+            Debug.Log("Force: " + motorForce);
 
             rb.AddForce(motorForce, ForceMode.Force);
 
-            HanldePropeller(throttle);
+            HanldePropeller(rb,throttle);
         }
 
 
         #endregion
         #region Private Methods
-        private void HanldePropeller(float throttle)
+        private void HanldePropeller(Rigidbody rb,float throttle)
         {
-            propeller.Rotate(Vector3.up, propellerRotationSpeed * throttle);
+            calPropSpeed = ( rb.velocity!=Vector3.zero? propSpinSpeed : (calPropSpeed * (1f - propStopSpeed / 2f)));
+            propeller.Rotate(Vector3.up, calPropSpeed);
         }
         #endregion
     }
