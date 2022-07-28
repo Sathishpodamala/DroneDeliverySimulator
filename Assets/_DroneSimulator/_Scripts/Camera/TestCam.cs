@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Deftouch
 {
-    public class TestCam : MonoBehaviour
+    public class DroneCamera : MonoBehaviour
     {
 
         public DroneController target;
