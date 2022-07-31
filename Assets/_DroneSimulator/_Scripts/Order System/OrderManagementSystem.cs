@@ -17,11 +17,11 @@ namespace Alpha
         public int numberOfOrdersToGenerate = 5;
         [SerializeField] private List<Order> generatedOrders = new List<Order>();
 
-        private Dictionary<string, Order> orders = new Dictionary<string, Order>();
+        private Dictionary<string, Order> ordersDictionary = new Dictionary<string, Order>();
         private OrderGenerator orderGenerator;
 
 
-        public Dictionary<string, Order> Orders => orders;
+        public Dictionary<string, Order> Orders => ordersDictionary;
         #endregion
 
         #region UnityMethods
@@ -62,7 +62,7 @@ namespace Alpha
         public void RefreshOrders()
         {
             generatedOrders.Clear();
-            orders.Clear();
+            ordersDictionary.Clear();
             generatedOrders = orderGenerator.GenerateBulkOrders(sectorsManager.allBuildings, currentlyUsingConfig, numberOfOrdersToGenerate);
             StoreOrdersIntoDictionary();
         }
@@ -73,7 +73,8 @@ namespace Alpha
         {
             foreach (Order order in generatedOrders)
             {
-                orders.Add(order.OrderID, order);
+                Debug.Log("Order Id: " + order.OrderID);
+                ordersDictionary.Add(order.OrderID, order);
             }
         }
         #endregion

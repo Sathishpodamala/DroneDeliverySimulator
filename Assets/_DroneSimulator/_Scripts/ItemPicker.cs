@@ -23,8 +23,9 @@ namespace Alpha
         {
             if (inputManager.drop)
             {
-                if (itemGameObject && item)
+                if (itemGameObject!=null && item!=null)
                 {
+                    Debug.Log("Drop");
                     itemGameObject.transform.SetParent(null);
                     item.SetRigidbodyKinematic(false);
                     itemGameObject = null;
@@ -35,13 +36,18 @@ namespace Alpha
 
         void OnCollisionEnter(Collision collision)
         {
-            if (collision.transform.TryGetComponent<Item>(out item) && !itemGameObject && item)
+            if (itemGameObject != null && item != null)
+                return;
+
+            if (collision.transform.TryGetComponent<Item>(out item))
             {
 
                 itemGameObject = collision.gameObject;
                 itemGameObject.transform.SetParent(itemHolder);
                 itemGameObject.transform.localPosition = Vector3.zero;
                 item.SetRigidbodyKinematic(true);
+
+                Debug.Log("Pickup");
 
             }
         }

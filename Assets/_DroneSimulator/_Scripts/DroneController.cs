@@ -7,6 +7,7 @@ namespace Alpha
     [RequireComponent(typeof(Rigidbody), typeof(DroneInputManager))]
     public class DroneController : MonoBehaviour
     {
+        #region Variables
 
         [Header("Drone Speeds")]
 
@@ -92,7 +93,10 @@ namespace Alpha
         private Rigidbody rigidBody;
         private DroneInputManager droneInputManager;
 
-        private void Awake()
+        #endregion
+
+        #region Unity Methods
+        void Awake()
         {
             coll = GetComponent<Collider>();
             rigidBody = GetComponent<Rigidbody>();
@@ -106,7 +110,7 @@ namespace Alpha
 
 
 
-        private void Update()
+        void Update()
         {
             uprightAngleDistance = (1f - base.transform.up.y) * 0.5f;
             uprightAngleDistance = (((double)uprightAngleDistance < 0.001) ? 0f : uprightAngleDistance);
@@ -131,7 +135,7 @@ namespace Alpha
             HandleInput();
         }
 
-        private void FixedUpdate()
+        void FixedUpdate()
         {
             if (motorOn)
             {
@@ -186,7 +190,7 @@ namespace Alpha
             }
         }
 
-        private void OnCollisionEnter(Collision newObject)
+        void OnCollisionEnter(Collision newObject)
         {
             collisionMagnitude = newObject.relativeVelocity.magnitude;
 
@@ -196,7 +200,7 @@ namespace Alpha
             }
         }
 
-        private void OnCollisionStay(Collision newObject)
+        void OnCollisionStay(Collision newObject)
         {
             if (groundDistance < coll.bounds.extents.y + 0.15f)
             {
@@ -204,8 +208,11 @@ namespace Alpha
             }
         }
 
+        #endregion
 
 
+
+        #region Private Methods
         private void HandleInput()
         {
             DriveInput(droneInputManager.verticalInput);
@@ -329,10 +336,6 @@ namespace Alpha
             motorOn = !motorOn;
         }
 
-
-
-
-
-
+        #endregion
     }
 }

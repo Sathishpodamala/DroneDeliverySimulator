@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+
 namespace Alpha
 {
     public class Sector : MonoBehaviour
     {
         #region Variables
-        public bool searchAndFillList = false;
-        [Space]
         [Header("Sector Properties")]
         [SerializeField] private string sectorName;
         [SerializeField] private int sectorId;
@@ -15,15 +15,14 @@ namespace Alpha
         #endregion
 
         #region UnityMethods
-        private void OnValidate()
+
+        void Awake()
         {
-            if(searchAndFillList)
-            {
-                buildings.Clear();
-                buildings = GetComponentsInChildren<Building>().ToList<Building>();
-                SetBuildingIds();
-            }
+            buildings.Clear();
+            buildings = GetComponentsInChildren<Building>().ToList<Building>();
+            SetBuildingIds();
         }
+
         #endregion
 
         #region PublicMethods
@@ -32,10 +31,12 @@ namespace Alpha
             if (!Helper.CheckStringIsValid(sectorName))
                 return;
             int num = 1;
+            StringBuilder id;
             foreach (Building building in buildings)
             {
-                string id = sectorName + "_" + sectorId+"_"+num;
-                building.SetBuildingId(id);
+                id = new StringBuilder(sectorName + "_" + sectorId + ", Building_" + num);
+                //string id = sectorName + "_" + sectorId + "_Building" + num;
+                building.SetBuildingId(id.ToString());
                 num++;
             }
         }
