@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Alpha.Events;
 
 namespace Alpha
 {
@@ -47,6 +47,8 @@ namespace Alpha
                 itemGameObject.transform.localPosition = Vector3.zero;
                 item.SetRigidbodyKinematic(true);
 
+
+                EventHandler.BroadCast(EventId.EVENT_ON_PACAKAGE_PICKED_UP);
                 Debug.Log("Pickup");
 
             }

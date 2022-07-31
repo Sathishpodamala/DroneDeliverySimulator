@@ -13,14 +13,21 @@ namespace Alpha
         #endregion
 
         #region UnityMethods
+        void Awake()
+        {
+            if (managementSystem == null)
+                managementSystem = FindObjectOfType<OrderManagementSystem>();
+        }
+
+
         IEnumerator Start()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
             if (managementSystem && managementSystem.Orders.Count >= visuals.Count)
             {
                 int i = 0;
-                foreach (KeyValuePair<string,Order> pair in managementSystem.Orders)
+                foreach (KeyValuePair<string, Order> pair in managementSystem.Orders)
                 {
                     Order order = pair.Value;
                     visuals[i].Init(order.Weight, order.Price, order.OrderID);
@@ -29,8 +36,8 @@ namespace Alpha
                     if (i >= visuals.Count)
                         break;
                 }
-                   
-                
+
+
             }
         }
 

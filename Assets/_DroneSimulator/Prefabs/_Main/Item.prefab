@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4215453136352464581}
   - component: {fileID: 4215453136352464580}
   - component: {fileID: 4215453136352464586}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Item
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -158,6 +158,21 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8513424388201257645, guid: 7e674e814ee9d4d4994e0dc2ce4d8d59,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7609145667655734672, guid: 7e674e814ee9d4d4994e0dc2ce4d8d59,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7235015103121818086, guid: 7e674e814ee9d4d4994e0dc2ce4d8d59,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -5742926517106001164, guid: 7e674e814ee9d4d4994e0dc2ce4d8d59,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -173,6 +188,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.018
       objectReference: {fileID: 0}
+    - target: {fileID: -3957782524123411102, guid: 7e674e814ee9d4d4994e0dc2ce4d8d59,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -3270834789232462163, guid: 7e674e814ee9d4d4994e0dc2ce4d8d59,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -183,10 +203,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -344004081357383697, guid: 7e674e814ee9d4d4994e0dc2ce4d8d59,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7e674e814ee9d4d4994e0dc2ce4d8d59,
         type: 3}
       propertyPath: m_Name
       value: New_Giftbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7e674e814ee9d4d4994e0dc2ce4d8d59,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2902008074560218088, guid: 7e674e814ee9d4d4994e0dc2ce4d8d59,
         type: 3}

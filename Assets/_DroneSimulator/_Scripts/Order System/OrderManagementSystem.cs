@@ -66,6 +66,13 @@ namespace Alpha
             generatedOrders = orderGenerator.GenerateBulkOrders(sectorsManager.allBuildings, currentlyUsingConfig, numberOfOrdersToGenerate);
             StoreOrdersIntoDictionary();
         }
+
+        public Order GetOrderById(string id)
+        {
+            if(ordersDictionary.TryGetValue(id, out Order order))
+                return order;
+            return null;
+        }
         #endregion
 
         #region PrivateMethods
@@ -73,7 +80,7 @@ namespace Alpha
         {
             foreach (Order order in generatedOrders)
             {
-                Debug.Log("Order Id: " + order.OrderID);
+               
                 ordersDictionary.Add(order.OrderID, order);
             }
         }

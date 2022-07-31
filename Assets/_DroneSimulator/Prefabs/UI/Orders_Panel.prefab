@@ -1455,6 +1455,7 @@ GameObject:
   - component: {fileID: 1215048538223016114}
   - component: {fileID: 1215048538223016076}
   - component: {fileID: 1215048538223016115}
+  - component: {fileID: 6385417323284632324}
   m_Layer: 5
   m_Name: Orders_Panel
   m_TagString: Untagged
@@ -1521,6 +1522,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6385417323284632324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215048538223016113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ce8d98dbc0af24a9635525acfcb01c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  managementSystem: {fileID: 0}
+  visuals:
+  - {fileID: 1215048537433847622}
+  - {fileID: 1215048538172157433}
+  - {fileID: 1215048538611615557}
+  - {fileID: 1215048538867469798}
 --- !u!1 &1215048538426471435
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,12 +7,14 @@ namespace Alpha
     {
         #region Variables
         private Rigidbody rb;
+        private Collider coll;
         #endregion
 
         #region UnityMethods
         void Start()
         {
             rb = GetComponent<Rigidbody>();
+            coll = GetComponent<Collider>();
         }
 
         
@@ -21,7 +23,7 @@ namespace Alpha
         #region PublicMethods
         public void SetRigidbodyKinematic(bool value)
         {
-            Debug.Log(value);
+            coll.isTrigger=value;
             rb.isKinematic = value;
         }
         #endregion
