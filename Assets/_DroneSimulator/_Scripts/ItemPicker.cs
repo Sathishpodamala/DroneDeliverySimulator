@@ -56,7 +56,12 @@ namespace Alpha
         #endregion
 
         #region PublicMethods
-
+        public void OnPickPackage()
+        {
+            itemGameObject.transform.SetParent(itemHolder);
+            itemGameObject.transform.localPosition = Vector3.zero;
+            item.SetRigidbodyKinematic(true);
+        }
         #endregion
 
         #region PrivateMethods

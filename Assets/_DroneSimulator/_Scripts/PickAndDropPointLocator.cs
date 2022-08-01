@@ -24,12 +24,14 @@ namespace Alpha
         {
             EventHandler.Subscribe(EventId.EVENT_ON_ORDER_ACCEPTED, On_Order_Accepted);
             EventHandler.Subscribe(EventId.EVENT_ON_PACAKAGE_PICKED_UP, On_Pacakage_PickedUp);
+            EventHandler.Subscribe(EventId.EVENT_ON_PACAKAGE_DELIVERED, On_Pacakage_Delivered);
         }
 
         void OnDisable()
         {
             EventHandler.UnSubscribe(EventId.EVENT_ON_ORDER_ACCEPTED, On_Order_Accepted);
             EventHandler.UnSubscribe(EventId.EVENT_ON_PACAKAGE_PICKED_UP, On_Pacakage_PickedUp);
+            EventHandler.UnSubscribe(EventId.EVENT_ON_PACAKAGE_DELIVERED, On_Pacakage_Delivered);
         }
         #endregion
 
@@ -42,6 +44,11 @@ namespace Alpha
         {
             transform.position = beamPosition;
             lightBeamEffect?.SetActive(true);
+        }
+
+        private void DisableBeam()
+        {
+            lightBeamEffect?.SetActive(false);
         }
         #endregion
 
@@ -73,6 +80,12 @@ namespace Alpha
                 }
             }
         }
+
+        private void On_Pacakage_Delivered(object args)
+        {
+            DisableBeam();
+        }
+
         #endregion
     }
 }

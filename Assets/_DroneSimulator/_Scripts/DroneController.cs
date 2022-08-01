@@ -221,7 +221,6 @@ namespace Alpha
             TurnInput(droneInputManager.leftRightInput);
         }
 
-
         private void DriveInput(float input)
         {
             if (input > 0f)

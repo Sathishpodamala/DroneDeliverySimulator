@@ -23,12 +23,14 @@ namespace Alpha
         void OnEnable()
         {
             EventHandler.Subscribe(EventId.EVENT_ON_ORDER_ACCEPTED, On_Order_Accepted);
+            EventHandler.Subscribe(EventId.EVENT_ON_PACAKAGE_DELIVERED, On_Pacakage_Delivered);
         }
 
         void OnDisable()
         {
 
             EventHandler.UnSubscribe(EventId.EVENT_ON_ORDER_ACCEPTED, On_Order_Accepted);
+            EventHandler.UnSubscribe(EventId.EVENT_ON_PACAKAGE_DELIVERED, On_Pacakage_Delivered);
         }
 
 
@@ -60,6 +62,11 @@ namespace Alpha
                 Destroy(orderManagementPrefabInstance);
 
             onScreenTouchInputPrefabInstance = Instantiate(onScreenTouchInputPrefab, rootCanvas.transform);
+        }
+
+        private void On_Pacakage_Delivered(object args)
+        {
+            ordersButton.SetActive(true);
         }
         #endregion
     }

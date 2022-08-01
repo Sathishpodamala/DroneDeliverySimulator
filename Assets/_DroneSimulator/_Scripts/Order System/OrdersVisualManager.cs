@@ -22,8 +22,13 @@ namespace Alpha
 
         IEnumerator Start()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
 
+            FillOrdersVisual();
+        }
+
+        private void FillOrdersVisual()
+        {
             if (managementSystem && managementSystem.Orders.Count >= visuals.Count)
             {
                 int i = 0;
@@ -36,7 +41,6 @@ namespace Alpha
                     if (i >= visuals.Count)
                         break;
                 }
-
 
             }
         }
