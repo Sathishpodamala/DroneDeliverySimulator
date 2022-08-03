@@ -6,7 +6,6 @@ namespace Alpha
     public class PickAndDrop : MonoBehaviour
     {
         #region Variables
-        [SerializeField] private GameObject packageAttachPointInDrone;
         [SerializeField] private DroneInputManager droneInputManager;
         [SerializeField] private ItemPicker itemPicker;
 

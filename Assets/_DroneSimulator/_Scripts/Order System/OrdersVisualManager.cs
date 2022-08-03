@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Alpha.Events;
 
 namespace Alpha
 {
@@ -13,6 +14,17 @@ namespace Alpha
         #endregion
 
         #region UnityMethods
+        void OnEnable()
+        {
+            EventHandler.Subscribe(EventId.EVENT_ON_PACAKAGE_DELIVERED, On_Pacakage_Delivered);
+        }
+
+        void OnDisable()
+        {
+            EventHandler.UnSubscribe(EventId.EVENT_ON_PACAKAGE_DELIVERED, On_Pacakage_Delivered);
+        }
+
+
         void Awake()
         {
             if (managementSystem == null)
@@ -29,7 +41,7 @@ namespace Alpha
 
         private void FillOrdersVisual()
         {
-            if (managementSystem && managementSystem.Orders.Count >= visuals.Count)
+            if (managementSystem && managementSystem.Orders.Count >0)
             {
                 int i = 0;
                 foreach (KeyValuePair<string, Order> pair in managementSystem.Orders)
@@ -56,7 +68,10 @@ namespace Alpha
         #endregion
 
         #region GameEventListeners
-
+        private void On_Pacakage_Delivered(object args)
+        {
+            //FillOrdersVisual();
+        }
         #endregion
     }
 }

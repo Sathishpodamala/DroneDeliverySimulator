@@ -1,12 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Alpha.Events;
 
 namespace Alpha
 {
     public class OrderManagementSystem : MonoBehaviour
     {
-        public bool debug;
-
         #region Variables
         [SerializeField] private List<OrderConfig> orderConfigBySector = new List<OrderConfig>();
         [SerializeField] private SectorsManager sectorsManager;
@@ -25,36 +24,23 @@ namespace Alpha
         #endregion
 
         #region UnityMethods
+
+        void OnEnable()
+        {
+            EventHandler.Subscribe(EventId.EVENT_ON_PACAKAGE_DELIVERED, On_Pacakage_Delivered);
+        }
+        void OnDisable()
+        {
+            EventHandler.Subscribe(EventId.EVENT_ON_PACAKAGE_DELIVERED, On_Pacakage_Delivered);
+        }
+
         void Start()
         {
             orderGenerator = new OrderGenerator();
-
             RefreshOrders();
 
-
-            if (debug)
-            {
-                for (int i = 0; i < generatedOrders.Count; i++)
-                {
-                    debugcolors.Add(Random.ColorHSV());
-                }
-            }
-
         }
 
-        List<Color> debugcolors = new List<Color>();
-        private void OnDrawGizmos()
-        {
-            if (debug)
-            {
-                for (int i = 0; i < generatedOrders.Count; i++)
-                {
-                    Gizmos.color = debugcolors[i];
-                    Gizmos.DrawLine(generatedOrders[i].PickupPoint.position, generatedOrders[i].DropPoint.position);
-
-                }
-            }
-        }
 
         #endregion
 
@@ -69,9 +55,15 @@ namespace Alpha
 
         public Order GetOrderById(string id)
         {
-            if(ordersDictionary.TryGetValue(id, out Order order))
+            if (ordersDictionary.TryGetValue(id, out Order order))
                 return order;
             return null;
+        }
+
+        public void RemoveOrderById(string id)
+        {
+            if (ordersDictionary.ContainsKey(id))
+                ordersDictionary.Remove(id);
         }
         #endregion
 
@@ -80,14 +72,24 @@ namespace Alpha
         {
             foreach (Order order in generatedOrders)
             {
-               
                 ordersDictionary.Add(order.OrderID, order);
             }
+        }
+
+        private void AddOrderToDictionary(Order order)
+        {
+            if (!ordersDictionary.ContainsKey(order.OrderID))
+                ordersDictionary.Add(order.OrderID, order);
         }
         #endregion
 
         #region GameEventListeners
-
+        private void On_Pacakage_Delivered(object args)
+        {
+            //Generate new order
+            Order order = orderGenerator.GenerateOrder(sectorsManager.allBuildings, currentlyUsingConfig);
+            AddOrderToDictionary(order);
+        }
         #endregion
     }
 }
